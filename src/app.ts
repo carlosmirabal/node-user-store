@@ -12,7 +12,5 @@ function main() {
     routes: AppRoutes.routes,
   });
 
-  console.log(server);
-
   server.start();
 }
