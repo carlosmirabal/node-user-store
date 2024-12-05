@@ -1,17 +1,22 @@
-import {Request, Response} from "express";
+import { Request, Response } from "express";
+import { RegisterUserDto } from "../../domain";
 
 export class AuthController {
-  constructor() {}
+    constructor() { }
 
-  registerUser = (req: Request, res: Response) => {
-    res.json("register");
-  };
+    registerUser = (req: Request, res: Response) => {
+        const [error, registerDto] = RegisterUserDto.create(req.body);
 
-  loginUser = (req: Request, res: Response) => {
-    res.json("loginUser");
-  };
+        if (error) return res.status(400).json({ error });
 
-  validateEmail = (req: Request, res: Response) => {
-    res.json("ValidateEmail");
-  };
+        res.json(registerDto);
+    };
+
+    loginUser = (req: Request, res: Response) => {
+        res.json("loginUser");
+    };
+
+    validateEmail = (req: Request, res: Response) => {
+        res.json("ValidateEmail");
+    };
 }
