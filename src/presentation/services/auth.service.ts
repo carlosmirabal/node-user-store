@@ -85,4 +85,20 @@ export class AuthService {
 
         return true;
     }
+
+    public validateEmail = async (token: string) => {
+        const payload = await JwtAdapter.validateToken(token);
+        if (!payload) throw CustomError.unAuthorized("Invalid token");
+
+        const { email } = payload as { email: string };
+        if (!email) throw CustomError.internalServer("Email not in token");
+
+        const user = await UserModel.findOne({ email })
+        if (!user) throw CustomError.badRequest("Email not exist");
+
+        user.emailValidated = true;
+        await user.save();
+
+        return true;
+    }
 }
