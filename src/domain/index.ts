@@ -11,3 +11,5 @@ export * from "./dtos/category/create-category.dto";
 export * from "./entities/category.entity";
 
 export * from "./dtos/shared/pagination.dto";
+
+export * from "./dtos/products/create-product.dto";
