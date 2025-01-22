@@ -11,8 +11,6 @@ export class ImagesRoutes {
         // Definir las rutas
         router.get("/:type/:img", controller.getImages);
 
-
-
         return router;
     }
 
